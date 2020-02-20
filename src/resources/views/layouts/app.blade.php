@@ -15,7 +15,7 @@
             font-family: 'Lato';
         }
         .fa-btn {
-            margin-right: 6px;
+            margin-right: 4px;
         }
     </style>
 </head>

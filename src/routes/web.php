@@ -33,15 +33,23 @@ Route::post('/task', function (Request $request) {
             ->withErrors($validator);
     }
 
-    $task = new Task();
-    $task->name = $request->name;
-    $task->save();
+    $tasks = new Task();
+    $tasks->name = $request->name;
+    $tasks->save();
 
     return redirect('/');
 });
 
-Route::delete('/task/{task}', function (Task $task) {
+Route::put('', function ($id) {
+
+});
+
+Route::delete('task/{task}', function (Task $task) {
     $task->delete();
 
     return redirect('/');
+});
+
+Route::get('/test-redirect', function () {
+    return redirect('edit');
 });
