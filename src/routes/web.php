@@ -40,16 +40,15 @@ Route::post('/task', function (Request $request) {
     return redirect('/');
 });
 
-Route::put('', function ($id) {
-
-});
-
 Route::delete('task/{task}', function (Task $task) {
     $task->delete();
 
     return redirect('/');
 });
 
-Route::get('/test-redirect', function () {
-    return redirect('edit');
+Route::get('/edit', function () {
+    return view("edit");
 });
+
+Route::get('/edit/{id}', 'TaskController@edit');
+Route::patch('/update/{id}', 'TaskController@update');

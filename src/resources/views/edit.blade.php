@@ -4,79 +4,50 @@
         <div class="col-sm-offset-2 col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    新しいタスク
+                    タスクを編集
                 </div>
                 <div class="panel-body">
                     <!-- 新タスクフォーム -->
                     <form action="{{ url('task')}}" method="POST" class="form-horizontal">
                         @csrf
                         <!-- タスク名 -->
-                        <div class="form-group">
+                        <div class="edit">
                             <label for="task-name" class="col-sm-3 control-label">タスク</label>
                             <div class="col-sm-6">
-                                <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
+                            <input type="text" name="name" id="task-name" class="form-control" value="s">
                             </div>
                         </div>
-                        <!-- タスク追加ボタン -->
+                        <!-- タスク編集ボタン -->
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-btn fa-plus"></i> タスク追加
+                                    <i class="fa fa-btn fa-plus"></i> タスク編集
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
-            <!-- TODO: 現在のタスク -->
-            @if (count($tasks) > 0)
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            現在のタスク
-        </div>
-        <div class="panel-body">
-            <table class="table table-striped task-table">
-                <!-- テーブルヘッダ -->
-                <thead>
-                    <tr>
-                        <th>タスク</th>
-                        <th>&nbsp;</th>
-                    </tr>
-                </thead>
-                <!-- テーブル本体 -->
-                <tbody>
-                    @foreach ($tasks as $task)
-                        <tr>
-                            <td class="edit">
-                                <form action="{{ url('task/' . $task->id) }}" method="POST">
-                                    @csrf
-                                    @method("edit")
-                                    <button type="submit" class="btn">
-                                          <i class="fa fa-btn fa-gear"></i> 編集
-                                    </button>
-                                </form>
-                                <div>{{ $task->name }}</div>
-                            </td>
-                            <!-- TODO: 削除ボタン -->
-                            <td>
-                                <form action="{{ url('task/' . $task->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="fa fa-btn fa-trash"></i> 削除
-                                    </button>
-                                </form>
-                            </td>
-                            <td>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-@endif
         </div>
     </div>
 @endsection
+
+
+
+ {{-- @extends('layouts.master')
+@section('title', 'サンプルページ')
+@section('content')
+
+<p>aaa</p>
+<form class="form-signin" role="form" method="post" action="/mylaravel/public/greeting/update/{{$data->id}}">
+<input type="hidden" name="_token" value="{{csrf_token()}}">
+{{-- -- 隠し -- --}}
+{{-- <input type="hidden" name="_method" value="PATCH">
+<input type="text" name="onamae" value="{{ $data->onamae }}" class="form-control" placeholder="名前を文字を入力してください" autofocus> --}}
+  {{-- バリデーション --}}
+  {{-- @if($errors->has('onamae'))
+  <p class="text-danger" style="margin-bottom: 30px;">{{ $errors->first('onamae') }}</p>
+  @endif
+<button class="btn btn-lg btn-primary btn-block" type="submit">送信</button>
+</form>
+@endsection --}}

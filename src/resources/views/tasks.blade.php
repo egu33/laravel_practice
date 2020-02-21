@@ -49,11 +49,11 @@
                     @foreach ($tasks as $task)
                         <tr>
                             <td class="edit">
-                                <form action="{{ url('task/' . $task->id) }}" method="POST">
+                                <form action="{{ url('edit')}}" method="POST" >
                                     @csrf
-                                    @method("edit")
+                                    @method('GET')
                                     <button type="submit" class="btn">
-                                          <i class="fa fa-btn fa-gear"></i> 編集
+                                          <i class="fa fa-btn fa-gear"> </i>編集</a>
                                     </button>
                                 </form>
                                 <div>{{ $task->name }}</div>
