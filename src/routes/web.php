@@ -11,44 +11,65 @@
 |
 */
 
-use App\Task;
-use Illuminate\Http\Request;
+use App\Http\Controllers\TaskController;
 
-Route::get('/', function () {
-    $tasks = Task::orderBy('created_at', 'asc')->get();
+Route::get('/' , 'TaskController@index');
+Route::post('/task' , "TaskController@add");
+Route::delete('task/{task}',  'TaskController@delete');
+Route::post('/edit/{id}' ,'TaskController@jump');
+Route::post('/edit/{id}/execute', 'TaskController@update');
 
-    return view('tasks', [
-        'tasks' => $tasks
-    ]);
-});
+// Route::get('/', function () {
+//     $tasks = Task::orderBy('created_at', 'asc')->get();
 
-Route::post('/task', function (Request $request) {
-    $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
+//     return view('tasks', [
+//         'tasks' => $tasks
+//     ]);
+// });
 
-    if ($validator->fails()) {
-        return redirect('/')
-            ->withInput()
-            ->withErrors($validator);
-    }
 
-    $tasks = new Task();
-    $tasks->name = $request->name;
-    $tasks->save();
 
-    return redirect('/');
-});
+// Route::post('/task', function (Request $request) {
+//     $validator = Validator::make($request->all(), [
+//         'name' => 'required|max:255',
+//     ]);
 
-Route::delete('task/{task}', function (Task $task) {
-    $task->delete();
+//     if ($validator->fails()) {
+//         return redirect('/')
+//             ->withInput()
+//             ->withErrors($validator);
+//     }
 
-    return redirect('/');
-});
+//     $tasks = new Task();
+//     $tasks->name = $request->name;
+//     $tasks->save();
 
-Route::get('/edit', function () {
-    return view("edit");
-});
+//     return redirect('/');
+// });
 
-Route::get('/edit/{id}', 'TaskController@edit');
-Route::patch('/update/{id}', 'TaskController@update');
+// Route::delete('task/{task}', function (Task $task) {
+//     $task->delete();
+
+//     return redirect('/');
+// });
+
+// Route::get('/Task/edit/{id}', 'TaskController@edit');
+
+// Route::get('/edit/{id}', 'TaskController@edit');
+// Route::patch('/update/{id}', 'TaskController@update');
+
+
+// Route::post('/edit/{id}' , function($id){
+//     $task = Task::find($id);
+//     return view('/edit', compact('task'));
+// });
+
+// Route::post('/edit/{id}/execute',function($id ,Request $request){
+//     $task = Task::find($id);
+
+//     $task->name = $request->name;
+//     $task->save();
+
+//     return redirect('/');
+
+// });

@@ -49,9 +49,9 @@
                     @foreach ($tasks as $task)
                         <tr>
                             <td class="edit">
-                                <form action="{{ url('edit')}}" method="POST" >
+                                <form action="{{ url('edit/' . $task->id)}}" method="POST" >
                                     @csrf
-                                    @method('GET')
+                                    @method('POST')
                                     <button type="submit" class="btn">
                                           <i class="fa fa-btn fa-gear"> </i>編集</a>
                                     </button>
