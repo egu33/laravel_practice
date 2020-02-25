@@ -8,7 +8,7 @@
                 </div>
                 <div class="panel-body">
                     <!-- 新タスクフォーム -->
-                    <form action="{{ url('edit/' . $task->id . '/execute')}}" method="POST" class="form-horizontal">
+                    <form action="{{ url('edit/' . $task->id . '/store')}}" method="POST" class="form-horizontal">
                         @csrf
                         <!-- タスク名 -->
                         <div class="edit">

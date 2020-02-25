@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Task;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
@@ -16,21 +15,21 @@ class TaskController extends Controller
         return view('tasks', ['tasks' => $tasks]);
     }
 
-    public function add(Request $request)
+    public function create(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
         ]);
-
         if ($validator->fails()) {
             return redirect('/')
                 ->withInput()
                 ->withErrors($validator);
         }
 
-        $tasks = new Task();
-        $tasks->name = $request->name;
-        $tasks->save();
+        $task = new Task();
+        $task->name = $request->name;
+        $task->save();
 
         return redirect('/');
     }
@@ -42,14 +41,13 @@ class TaskController extends Controller
         return redirect('/');
     }
 
-    public function jump($id)
+    public function edit(Task $task)
     {
-        $task = Task::find($id);
         return view('/edit', compact('task'));
     }
 
-    public function update($id ,Request $request){
-        $task = Task::find($id);
+    public function update($task ,Request $request){
+        $task = Task::find($task);
 
         $task->name = $request->name;
         $task->save();

@@ -48,15 +48,19 @@
                 <tbody>
                     @foreach ($tasks as $task)
                         <tr>
+                            <td>
+                                <div>{{ $task->name }}</div>
+                            </td>
+                            <td width =300px>
+                            </td>
                             <td class="edit">
-                                <form action="{{ url('edit/' . $task->id)}}" method="POST" >
+                                <form action="{{ url('edit/' . $task->id)}}" method="POST">
                                     @csrf
                                     @method('POST')
                                     <button type="submit" class="btn">
                                           <i class="fa fa-btn fa-gear"> </i>編集</a>
                                     </button>
                                 </form>
-                                <div>{{ $task->name }}</div>
                             </td>
                             <!-- TODO: 削除ボタン -->
                             <td>
