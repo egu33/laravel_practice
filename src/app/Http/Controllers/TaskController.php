@@ -11,17 +11,17 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::orderBy('priority', 'desc')->orderBy('created_at', 'asc')->get();
+        $tasks = Task::orderBy('limit', 'asc')->orderBy('priority', 'desc')->orderBy('created_at', 'asc')->get();
 
         return view('tasks', ['tasks' => $tasks]);
     }
 
     public function create(Validation $request)
     {
-
         $task = new Task();
         $task->name = $request->name;
         $task->priority = $request->priority;
+        $task->limit = $request->limit;
         $task->save();
 
         return redirect('/tasks');
@@ -45,6 +45,7 @@ class TaskController extends Controller
 
         $task->name = $request->name;
         $task->priority = $request->priority;
+        $task->limit = $request->limit;
         $task->save();
 
 

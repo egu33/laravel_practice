@@ -11,39 +11,27 @@
                     <form action="{{ url('edit/' . $task->id . '/store')}}" method="POST" class="form-horizontal">
                         @csrf
                         <!-- タスク名 -->
-                        <div class="edit">
-                            <div>
+                        <div class="form-group">
                             <label for="task-name" class="col-sm-3 control-label">タスク</label>
                             <div class="col-sm-6">
-                            <input type="text" name="name" id="task-name" class="form-control" value="{{ $task->name }}">
+                                <input type="text" name="name" id="task-name" class="form-control" value="{{ $task->name }}">
                             </div>
-                            <div>
-                                <select name="priority" >
-                                    {{-- @if($task->priority == 1)
-                                    <option value="1" selected>低</option>
-                                    <option value="2">中</option>
-                                    <option value="3">高</option>
-                                    @elseif($task->priority == 2)
-                                    <option value="1">低</option>
-                                    <option value="2" selected>中</option>
-                                    <option value="3">高</option>
-                                    @elseif($task->priority == 3)
-                                    <option value="1">低</option>
-                                    <option value="2">中</option>
-                                    <option value="3" selected>高</option>
-                                    @endif --}}
-
+                        </div>
+                        <div class="form-group">
+                            <label for="task-name" class="col-sm-3 control-label">優先度</label>
+                            <select name="priority" class="col-sm-6" >
                                     <option value="1"
-                                        @if($task->priority == 1) selected @endif
-                                    >低</option>
+                                        @if($task->priority == 1) selected @endif >低</option>
                                     <option value="2"
-                                        @if($task->priority == 2) selected @endif
-                                    >中</option>
+                                        @if($task->priority == 2) selected @endif>中</option>
                                     <option value="3"
-                                        @if($task->priority == 3) selected @endif
-                                    >高</option>
-                                </select>
-                            </div>
+                                        @if($task->priority == 3) selected @endif>高</option>
+                            </select>
+                        </div>
+                        {{-- 期限入力ボタン --}}
+                        <div class="form-group" >
+                            <label for="task-name" class="col-sm-3 control-label">期日</label>
+                            <input type="date" name="limit" value= "{{$task->limit}}" required>
                         </div>
                         <!-- タスク編集ボタン -->
                         <div class="form-group">
