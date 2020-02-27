@@ -12,9 +12,37 @@
                         @csrf
                         <!-- タスク名 -->
                         <div class="edit">
+                            <div>
                             <label for="task-name" class="col-sm-3 control-label">タスク</label>
                             <div class="col-sm-6">
                             <input type="text" name="name" id="task-name" class="form-control" value="{{ $task->name }}">
+                            </div>
+                            <div>
+                                <select name="priority" >
+                                    {{-- @if($task->priority == 1)
+                                    <option value="1" selected>低</option>
+                                    <option value="2">中</option>
+                                    <option value="3">高</option>
+                                    @elseif($task->priority == 2)
+                                    <option value="1">低</option>
+                                    <option value="2" selected>中</option>
+                                    <option value="3">高</option>
+                                    @elseif($task->priority == 3)
+                                    <option value="1">低</option>
+                                    <option value="2">中</option>
+                                    <option value="3" selected>高</option>
+                                    @endif --}}
+
+                                    <option value="1"
+                                        @if($task->priority == 1) selected @endif
+                                    >低</option>
+                                    <option value="2"
+                                        @if($task->priority == 2) selected @endif
+                                    >中</option>
+                                    <option value="3"
+                                        @if($task->priority == 3) selected @endif
+                                    >高</option>
+                                </select>
                             </div>
                         </div>
                         <!-- タスク編集ボタン -->

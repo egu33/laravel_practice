@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Validation;
 use App\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -10,35 +11,27 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = Task::orderBy('priority', 'desc')->orderBy('created_at', 'asc')->get();
 
         return view('tasks', ['tasks' => $tasks]);
     }
 
-    public function create(Request $request)
+    public function create(Validation $request)
     {
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-        ]);
-        if ($validator->fails()) {
-            return redirect('/')
-                ->withInput()
-                ->withErrors($validator);
-        }
 
         $task = new Task();
         $task->name = $request->name;
+        $task->priority = $request->priority;
         $task->save();
 
-        return redirect('/');
+        return redirect('/tasks');
     }
 
-    public function delete(Task $task)
+    public function destroy(Task $task)
     {
         $task->delete();
 
-        return redirect('/');
+        return redirect('/tasks');
     }
 
     public function edit(Task $task)
@@ -46,12 +39,15 @@ class TaskController extends Controller
         return view('/edit', compact('task'));
     }
 
-    public function update($task ,Request $request){
+    public function update($task, Request $request)
+    {
         $task = Task::find($task);
 
         $task->name = $request->name;
+        $task->priority = $request->priority;
         $task->save();
 
-        return redirect('/');
+
+        return redirect('/tasks');
     }
 }

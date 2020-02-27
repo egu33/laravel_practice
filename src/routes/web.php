@@ -13,8 +13,8 @@
 
 use App\Http\Controllers\TaskController;
 
-Route::get('/' , 'TaskController@index');
-Route::post('/task' , "TaskController@create");
-Route::delete('task/{task}',  'TaskController@delete');
+Route::get('/tasks' , 'TaskController@index');
+Route::get('/tasks/create' , "TaskController@create");
+Route::delete('tasks/{task}',  'TaskController@destroy');
 Route::post('/edit/{task}' ,'TaskController@edit');
 Route::post('/edit/{task}/store', 'TaskController@update');
