@@ -5,7 +5,7 @@
 @endpush
 @section('content')
     <div class="container">
-        <div class="col-sm-offset-0 col-sm-28">
+        <div class="col-sm-offset--4 col-sm-28">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     新しいタスク
@@ -22,24 +22,31 @@
                                 <input type="text" name="name" id="task-name" class="form-control" value="{{ old('task') }}">
                             </div>
                         </div>
-                        <!-- タスク追加ボタン -->
                         <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-6">
+                            <label for="task-name" class="col-sm-3 control-label">優先度</label>
+                            <div class="col-sm-offset-0 col-sm-6">
                                 <div>
-
                                     <select name="priority" class="cp_ipselect cp_sl05">
                                         <option value="1">低</option>
                                         <option value="2" selected>中</option>
                                         <option value="3">高</option>
                                     </select>
                                 </div>
-                                <div>
-                                    <input type="date" value= "<?php echo date('Y-m-d');?>" name="limit"  required>
-                                </div>
-                                <button type="submit" class="btn btn-default">
-                                    <i class="fa fa-btn fa-plus"></i> タスク追加
-                                </button>
                             </div>
+                        </div>
+                        <div　class="form-group">
+                            <label for="task-name" class="col-sm-3 control-label">期日</label>
+                            <input type="date" value= "<?php echo date('Y-m-d');?>" name="limit"  required>
+                        </div>
+                        <div>
+                                <!-- タスク追加ボタン -->
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fa fa-btn fa-plus"></i> タスク追加
+                                        </button>
+                                    </div>
+                                </div>
                         </div>
                     </form>
                 </div>
